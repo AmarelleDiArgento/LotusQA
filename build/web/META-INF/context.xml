@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Context path="/LotusQA">
+<resouce
+    auth="container"
+    
+    name="Pool"
+    username="LotusQA"
+    password="1311138C72A04BB7D228AFB9D574ED2D00DFD264C67161A958AD62E32672DEFF"
+    url="jdbc:mysql://localhost:3306/LotusQA"
+      
+    driverClassName="com.mysql.jdbc.Driver"  
+    type="javax.sql.DataSource"
+    
+    initialSize= "0"
+    maxActive ="100"
+    maxIdle = "50"
+    minIdle = "25"
+    removeAbandoned="true"
+    removeAbandonedTimeout="55">
+    
+</resouce>
+</Context>
