@@ -73,8 +73,20 @@ public class ModuloImp extends Mensajero implements Modulo {
     }
 
     @Override
-    public msj Delete(ModuloTab m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public msj Delete(Long Id) {
+        PreparedStatement stat = null;
+        try {
+            stat = con.prepareStatement(Delete);
+            stat.setLong(1, Id);
+            if (stat.executeUpdate() == 0) {
+                m = UpdateError(String.valueOf(Id));
+            } else {
+                m = UpdateOk(String.valueOf(Id));
+            }
+        } catch (SQLException ex) {
+            m = UpdateError(String.valueOf(Id), ex);
+        }
+        return m;
     }
 
     @Override
@@ -83,7 +95,7 @@ public class ModuloImp extends Mensajero implements Modulo {
     }
 
     @Override
-    public ModuloTab get(ResultSet rs) throws SQLException {
+    public ModuloTab gets(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

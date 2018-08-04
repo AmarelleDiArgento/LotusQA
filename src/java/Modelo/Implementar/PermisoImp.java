@@ -24,7 +24,7 @@ public class PermisoImp extends Mensajero implements Permiso {
     Connection con;
 
     final String Insert = "call LotusQA.permisoIn(?, ?, ?, ?, ?, ?);";
-    final String Update = "call LotusQA.permisoCo(?,?, ?, ?, ?, ?, ?);";
+    final String Update = "call LotusQA.permisoMo(?,?, ?, ?, ?, ?, ?);";
     final String Delete = "call LotusQA.permisoEl(?);";
     final String One = "call LotusQA.permisoCo(?);";
     final String All = "call LotusQA.permisoLi();";
@@ -86,7 +86,7 @@ public class PermisoImp extends Mensajero implements Permiso {
     }
 
     @Override
-    public msj Delete(PermisoTab o) {
+    public msj Delete(Long Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -96,7 +96,7 @@ public class PermisoImp extends Mensajero implements Permiso {
     }
 
     @Override
-    public PermisoTab get(ResultSet rs) throws SQLException {
+    public PermisoTab gets(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

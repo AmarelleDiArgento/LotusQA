@@ -6,6 +6,7 @@
 package Servicios.Mensajes;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -81,6 +82,34 @@ public abstract class Mensajero {
         return m;
     }
 
+    public msj oneError(String Id) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("No se pudo localizar el identificador " + Id + ". \n Por favor verifica la informacion ingresada.");
+        return m;
+    }
+
+    public msj oneError(Long Id) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("No se pudo localizar el identificador " + Id + ". \n Por favor verifica la informacion ingresada.");
+        return m;
+    }
+
+    public msj OneError(String Id, SQLException ex) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("No se pudo localizar el identificador " + Id + ". \n Por favor verifica la informacion ingresada. \n Error: " + ex.getMessage() + "\n " + ex);
+        return m;
+    }
+
+    public msj OneError(Long Id, SQLException ex) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("No se pudo localizar el identificador " + Id + ". \n Por favor verifica la informacion ingresada. \n Error: " + ex.getMessage() + "\n " + ex);
+        return m;
+    }
+
     public msj statsClose(PreparedStatement ps) {
 
         if (ps != null) {
@@ -89,7 +118,30 @@ public abstract class Mensajero {
             } catch (SQLException ex) {
                 m.setTipo("Error");
                 m.setMsj("¡Hubo un error!");
-                m.setDetalles("No pudo cerrarse el proceso. \n Error: " + ex.getMessage() + "\n " + ex);
+                m.setDetalles("No pudo cerrarse el proceso Prepared Statement. \n Error: " + ex.getMessage() + "\n " + ex);
+            }
+        }
+        return m;
+    }
+
+    public msj statsClose(PreparedStatement ps, ResultSet rs) {
+
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                m.setTipo("Error");
+                m.setMsj("¡Hubo un error!");
+                m.setDetalles("No pudo cerrarse el proceso Prepared Statement. \n Error: " + ex.getMessage() + "\n " + ex);
+            }
+        }
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                m.setTipo("Error");
+                m.setMsj("¡Hubo un error!");
+                m.setDetalles("No pudo cerrarse el proceso Result Set. \n Error: " + ex.getMessage() + "\n " + ex);
             }
         }
         return m;

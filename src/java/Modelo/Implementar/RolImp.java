@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,23 +81,61 @@ public class RolImp extends Mensajero implements Rol {
     }
 
     @Override
-    public msj Delete(RolTab o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public msj Delete(Long Id) {
+    
+    }
+
+    @Override
+    public RolTab gets(ResultSet rs) throws SQLException {
+        int Id = rs.getInt("idRol");
+        String Nombre = rs.getString("nombreRol");
+        String Descripcion = rs.getString("descripcionRol");
+        boolean Stat = rs.getBoolean("estadoRol");
+        RolTab rt = new RolTab(Id, Nombre, Descripcion, Stat);
+        return rt;
     }
 
     @Override
     public RolTab one(Long Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        RolTab r = null;
+        try {
+            stat = con.prepareCall(One);
+            stat.setLong(1, Id);
+            rs = stat.executeQuery();
+            if (rs.next()) {
+                r = gets(rs);
+            } else {
+                m = oneError(Id);
+            }
+        } catch (SQLException ex) {
+            m = OneError(Id, ex);
+        } finally {
+            statsClose(stat, rs);
+        }
 
-    @Override
-    public RolTab get(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return r;
     }
 
     @Override
     public List<RolTab> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        List<RolTab> r = new ArrayList<>();
+        try {
+            stat = con.prepareCall(All);
+            rs = stat.executeQuery();
+            while (rs.next()) {
+                r.add(gets(rs));
+            }
+        } catch (SQLException ex) {
+        } finally {
+            statsClose(stat, rs);
+        }
+
+        return r;
     }
 
 }

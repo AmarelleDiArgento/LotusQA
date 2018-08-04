@@ -17,8 +17,8 @@ import java.util.List;
 public interface DAO <R,O,K>{
     msj Insert(O o);
     msj Update(O o);
-    msj Delete(O o);
+    msj Delete(K Id);
     O one(K Id);
-    O get(R rs) throws SQLException;
+    O gets(R rs) throws SQLException;
     List<O> all();
 }

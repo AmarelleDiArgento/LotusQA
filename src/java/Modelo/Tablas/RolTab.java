@@ -108,4 +108,9 @@ public class RolTab implements Serializable {
         this.Rolp = Rolp;
     }
 
+    @Override
+    public String toString() {
+        return "RolTab{" + "Id=" + Id + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Status=" + Status + ", Rolp=" + Rolp + '}';
+    }
+
 }

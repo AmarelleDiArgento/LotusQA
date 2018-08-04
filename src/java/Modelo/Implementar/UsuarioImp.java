@@ -90,7 +90,7 @@ public class UsuarioImp extends Mensajero implements Usuario {
     }
 
     @Override
-    public msj Delete(UsuarioTab o) {
+    public msj Delete(String Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -100,7 +100,7 @@ public class UsuarioImp extends Mensajero implements Usuario {
     }
 
     @Override
-    public UsuarioTab get(ResultSet rs) throws SQLException {
+    public UsuarioTab gets(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
