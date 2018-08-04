@@ -7,29 +7,27 @@ package Modelo.Implementar;
 
 import Modelo.Interfaz.Modulo;
 import Modelo.Tablas.ModuloTab;
+import Servicios.Mensajes.Mensajero;
 import Servicios.Mensajes.msj;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author almoreno
  */
-public class ModuloImp implements Modulo {
+public class ModuloImp extends Mensajero implements Modulo {
 
     Connection con;
-    msj m = new msj();
 
-    final String Insert = "";
-    final String update = "";
-    final String delete = "";
-    final String one = "";
-    final String all = "";
+    final String Insert = "call LotusQA.moduloIn(?,?,?);";
+    final String Update = "call LotusQA.moduloMo(?,?,?,?);";
+    final String Delete = "call LotusQA.moduloEl(?);";
+    final String One = "call LotusQA.moduloCo(?);";
+    final String All = "call LotusQA.moduloLi();";
 
     public ModuloImp(Connection con) {
         this.con = con;
@@ -44,24 +42,34 @@ public class ModuloImp implements Modulo {
             stat.setString(2, mo.getDescripcion());
             stat.setBoolean(3, mo.isStatus());
             if (stat.executeUpdate() == 0) {
-                m.setTipo("Error");
-                m.setMsj("Error al ingresar los datos de " + mo.getNombre());
-                m.setDetalles("Hubo un error al ingresar los datos, por favor verifica la informacion ingresada");
-
+                m = InsertError(mo.getNombre());
             } else {
-                m.setTipo("Ok");
-                m.setMsj("Registro exitoso");
-                m.setDetalles("Se ha ingresado satisfactoriamente a " + mo.getNombre());
+                m = InsertOk(mo.getNombre());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ModuloImp.class.getName()).log(Level.SEVERE, null, ex);
+            m = InsertError(mo.getNombre(), ex);
         }
         return m;
     }
 
     @Override
-    public msj Update(ModuloTab m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public msj Update(ModuloTab mo) {
+        PreparedStatement stat = null;
+        try {
+            stat = con.prepareStatement(Update);
+            stat.setInt(1, mo.getId());
+            stat.setString(2, mo.getNombre());
+            stat.setString(3, mo.getDescripcion());
+            stat.setBoolean(4, mo.isStatus());
+            if (stat.executeUpdate() == 0) {
+                m = UpdateError(mo.getNombre());
+            } else {
+                m = UpdateOk(mo.getNombre());
+            }
+        } catch (SQLException ex) {
+            m = UpdateError(mo.getNombre(), ex);
+        }
+        return m;
     }
 
     @Override
@@ -84,5 +92,4 @@ public class ModuloImp implements Modulo {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }

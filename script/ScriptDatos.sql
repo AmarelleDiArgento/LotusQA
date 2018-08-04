@@ -3,145 +3,145 @@
 -- Insertar
 -- ---------------------------------------------------------------------------------------------------------------
 
-   call lotusqa.usuarioIn('almoreno', 11182, 'Alexander', 'Moreno Rodriguez', '1234', '1988-03-09', '2016-04-15', 1);
--- call lotusqa.usuarioIn(?, ?, ?, ?, ?, ?, ?, ?);
+   call LotusQA.usuarioIn('almoreno', 11182, 'Alexander', 'Moreno Rodriguez', '1234', '1988-03-09', '2016-04-15', 1);
+-- call LotusQA.usuarioIn(?, ?, ?, ?, ?, ?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Modificar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.usuarioMo('almoreno', 11182, 'Alexander', 'Moreno Rodriguez', '1234', '1988-03-09', '2016-08-01', 0);
--- call lotusqa.usuarioMo(?, ?, ?, ?, ?, ?, ?, ?);
+-- call LotusQA.usuarioMo('almoreno', 11182, 'Alexander', 'Moreno Rodriguez', '1234', '1988-03-09', '2016-08-01', 0);
+-- call LotusQA.usuarioMo(?, ?, ?, ?, ?, ?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Eliminar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.usuarioEl('almorenol');
--- call lotusqa.usuarioEl(?);
+-- call LotusQA.usuarioEl('almorenol');
+-- call LotusQA.usuarioEl(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Listar todos
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.usuarioLi();
+-- call LotusQA.usuarioLi();
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Consultar x id
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.usuarioCo('almoreno');
--- call lotusqa.usuarioCo(?);
+-- call LotusQA.usuarioCo('almoreno');
+-- call LotusQA.usuarioCo(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Datos LotusQA Tabla: Rol
 -- Insertar
 -- ---------------------------------------------------------------------------------------------------------------
 
-   call lotusqa.rolIn('Administrator', 'Caray!', 1);
-   call lotusqa.rolIn('Normalizer', 'Caray!', 1);
-   call lotusqa.rolIn('Quality Engineer', 'Caray!', 1);
-   call lotusqa.rolIn('Assistant', 'Caray!', 1); 
--- call lotusqa.rolIn(?, ?, ?);
+   call LotusQA.rolIn('Administrator', 'Caray!', 1);
+   call LotusQA.rolIn('Normalizer', 'Caray!', 1);
+   call LotusQA.rolIn('Quality Engineer', 'Caray!', 1);
+   call LotusQA.rolIn('Assistant', 'Caray!', 1); 
+-- call LotusQA.rolIn(?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Modificar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.rolMo(1,'Administrador', 'Caray, Caray!', 1);
--- call lotusqa.rolMo(?,?, ?, ?);
+-- call LotusQA.rolMo(1,'Administrador', 'Caray, Caray!', 1);
+-- call LotusQA.rolMo(?,?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Eliminar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.rolEl(2);
--- call lotusqa.rolEl(?);
+-- call LotusQA.rolEl(2);
+-- call LotusQA.rolEl(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Listar todos
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.rolLi();
+-- call LotusQA.rolLi();
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Consultar x id
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.rolCo(2);
--- call lotusqa.rolCo(?);
+-- call LotusQA.rolCo(2);
+-- call LotusQA.rolCo(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Datos LotusQA Tabla: Modulo
 -- Insertar
 -- ---------------------------------------------------------------------------------------------------------------
 
-   call lotusqa.modIn('Monitoreo', 'Monitoreo Caray', 1);
-   call lotusqa.modIn('Evaluación florero', 'Evaluación florero Caray', 1);
--- call lotusqa.modIn(?,?,?);
+   call LotusQA.moduloIn('Monitoreo', 'Monitoreo Caray', 1);
+   call LotusQA.moduloIn('Evaluación florero', 'Evaluación florero Caray', 1);
+-- call LotusQA.moduloIn(?,?,?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Modificar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.modMo(1,'Monitoreo', 'Monitoreo de productos', 1);
--- call lotusqa.modMo(?,?,?,?);
+-- call LotusQA.moduloMo(1,'Monitoreo', 'Monitoreo de productos', 1);
+-- call LotusQA.moduloMo(?,?,?,?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Eliminar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.modEl(2);
--- call lotusqa.modEl(?);
+-- call LotusQA.moduloEl(2);
+-- call LotusQA.moduloEl(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Listar todos
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.modLi();
+-- call LotusQA.moduloLi();
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Consultar x id
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.modCo(1);
--- call lotusqa.modCo(?);
+-- call LotusQA.moduloCo(1);
+-- call LotusQA.moduloCo(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Datos LotusQA Tabla: Permiso
 -- Insertar
 -- ---------------------------------------------------------------------------------------------------------------
 
-   call lotusqa.perIn('Monitoreo Rosa Normal', 'monRosaNor.jsp', '', 'bla bla bla', '1', 1);
-   call lotusqa.perIn('Monitoreo Alstroemeria Normal', 'monAlstroemeria Nor.jsp', '', 'bla bla bla', '1', 1);
--- call lotusqa.perIn(?, ?, ?, ?, ?, ?);
+   call LotusQA.permisoIn('Monitoreo Rosa Normal', 'monRosaNor.jsp', '', 'bla bla bla', '1', 1);
+   call LotusQA.permisoIn('Monitoreo Alstroemeria Normal', 'monAlstroemeria Nor.jsp', '', 'bla bla bla', '1', 1);
+-- call LotusQA.permisoIn(?, ?, ?, ?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Modificar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.perMo(1,'Monitoreo Rosa Normal', 'monRosaNor.jsp', 'ac_unit', 'bla bla bla', '1', 1);
--- call lotusqa.perCo(?,?, ?, ?, ?, ?, ?);
+-- call LotusQA.permisoMo(1,'Monitoreo Rosa Normal', 'monRosaNor.jsp', 'ac_unit', 'bla bla bla', '1', 1);
+-- call LotusQA.permisoCo(?,?, ?, ?, ?, ?, ?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Eliminar
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.perEl(2);
--- call lotusqa.perEl(?);
+-- call LotusQA.permisoEl(2);
+-- call LotusQA.permisoEl(?);
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Listar todos
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.perLi();
+-- call LotusQA.permisoLi();
 
 -- ---------------------------------------------------------------------------------------------------------------
 -- Consultar x id
 -- ---------------------------------------------------------------------------------------------------------------
 
--- call lotusqa.perCo(1);
--- call lotusqa.perCo(?);
+-- call LotusQA.permisoCo(1);
+-- call LotusQA.permisoCo(?);
 
 
 

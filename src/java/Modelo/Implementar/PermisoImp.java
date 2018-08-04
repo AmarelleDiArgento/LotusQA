@@ -7,8 +7,10 @@ package Modelo.Implementar;
 
 import Modelo.Interfaz.Permiso;
 import Modelo.Tablas.PermisoTab;
+import Servicios.Mensajes.Mensajero;
 import Servicios.Mensajes.msj;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,28 +19,70 @@ import java.util.List;
  *
  * @author almoreno
  */
-public class PermisoImp implements Permiso{
-Connection con;
-    msj m = new msj();
+public class PermisoImp extends Mensajero implements Permiso {
 
-    final String Insert = "";
-    final String update = "";
-    final String delete = "";
-    final String one = "";
-    final String all = "";
+    Connection con;
+
+    final String Insert = "call LotusQA.permisoIn(?, ?, ?, ?, ?, ?);";
+    final String Update = "call LotusQA.permisoCo(?,?, ?, ?, ?, ?, ?);";
+    final String Delete = "call LotusQA.permisoEl(?);";
+    final String One = "call LotusQA.permisoCo(?);";
+    final String All = "call LotusQA.permisoLi();";
 
     public PermisoImp(Connection con) {
         this.con = con;
     }
 
     @Override
-    public msj Insert(PermisoTab o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public msj Insert(PermisoTab p) {
+        PreparedStatement stat = null;
+
+        try {
+            stat = con.prepareStatement(Insert);
+            stat.setString(1, p.getNombre());
+            stat.setString(2, p.getUrl());
+            stat.setString(3, p.getIcon());
+            stat.setString(4, p.getDescripcion());
+            stat.setBoolean(5, p.isStatus());
+            stat.setInt(6, p.getId_Mod());
+            if (stat.executeUpdate() == 0) {
+                m = InsertError(p.getNombre());
+            } else {
+                m = InsertOk(p.getNombre());
+            }
+        } catch (SQLException ex) {
+            m = InsertError(p.getNombre(), ex);
+        } finally {
+            statsClose(stat);
+        }
+        return m;
     }
 
     @Override
-    public msj Update(PermisoTab o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public msj Update(PermisoTab p) {
+       
+        PreparedStatement stat = null;
+
+        try {
+            stat = con.prepareStatement(Update);
+            stat.setInt(1, p.getId());
+            stat.setString(2, p.getNombre());
+            stat.setString(3, p.getUrl());
+            stat.setString(4, p.getIcon());
+            stat.setString(5, p.getDescripcion());
+            stat.setBoolean(6, p.isStatus());
+            stat.setInt(7, p.getId_Mod());
+            if (stat.executeUpdate() == 0) {
+                m = UpdateError(p.getNombre());
+            } else {
+                m = UpdateOk(p.getNombre());
+            }
+        } catch (SQLException ex) {
+            m = UpdateError(p.getNombre(), ex);
+        } finally {
+            statsClose(stat);
+        }
+        return m;
     }
 
     @Override
@@ -60,6 +104,5 @@ Connection con;
     public List<PermisoTab> all() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

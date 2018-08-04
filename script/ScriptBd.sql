@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS LotusQA.Rol (
   nombreRol VARCHAR(60) NOT NULL,
   descripcionRol MEDIUMTEXT NOT NULL,
   estadoRol TINYINT NOT NULL DEFAULT 0,
-  PRIMARY KEY (idRol))
+  PRIMARY KEY (idRol),
+  UNIQUE INDEX nombreRol_UNIQUE (nombreRol ASC))
 ENGINE = InnoDB;
 
 -- ---------------------------------------------------------------------------------------------------------------

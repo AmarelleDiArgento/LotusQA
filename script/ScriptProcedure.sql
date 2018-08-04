@@ -120,7 +120,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.modIn (in mNombre VARCHAR(60), in mDescripcion mediumtext, in mEstado tinyint(1))
+create procedure LotusQA.moduloIn (in mNombre VARCHAR(60), in mDescripcion mediumtext, in mEstado tinyint(1))
 begin
 insert into Modulo (nombreMod,descripcionMod,estadoMod) values (mNombre,mDescripcion,mEstado);
 end $$
@@ -131,7 +131,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.modMo (in moId INT, in mNombre VARCHAR(60), in mDescripcion mediumtext, in mEstado tinyint(1))
+create procedure LotusQA.moduloMo (in moId INT, in mNombre VARCHAR(60), in mDescripcion mediumtext, in mEstado tinyint(1))
 begin
 update Modulo SET nombreMod=mNombre, descripcionMod=mDescripcion, estadoMod=mEstado where idMod = moId ;
 end $$
@@ -142,7 +142,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.modEl (in moId INT)
+create procedure LotusQA.moduloEl (in moId INT)
 begin
 delete from Permiso where Permiso.idMod = moId ;
 delete from Modulo where Modulo.idMod = moId ;
@@ -154,7 +154,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.modLi ()
+create procedure LotusQA.moduloLi ()
 begin
 select idMod,nombreMod,descripcionMod,estadoMod from Modulo;
 end $$
@@ -165,7 +165,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.modCo (in moId INT)
+create procedure LotusQA.moduloCo (in moId INT)
 begin
 select idMod,nombreMod,descripcionMod,estadoMod from Modulo where idMod = moId;
 end $$
@@ -177,7 +177,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.perIn (in pNombre VARCHAR(60) ,in pUrl VARCHAR(50), in pIco VARCHAR(45), in pDescripcion MEDIUMTEXT, in pEstado VARCHAR(45), in moId INT)
+create procedure LotusQA.permisoIn (in pNombre VARCHAR(60) ,in pUrl VARCHAR(50), in pIco VARCHAR(45), in pDescripcion MEDIUMTEXT, in pEstado VARCHAR(45), in moId INT)
 begin
 insert into Permiso (nombrePer,urlPer,icoPer,descripcionMod,estadoPer,IdMod) values (pNombre,pUrl,pIco,pDescripcion,pEstado,moId);
 end $$
@@ -188,7 +188,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.perMo (in pId INT, in pNombre VARCHAR(60) ,in pUrl VARCHAR(50), in pIco VARCHAR(45), in pDescripcion MEDIUMTEXT, in pEstado VARCHAR(45), in moId INT)
+create procedure LotusQA.permisoMo (in pId INT, in pNombre VARCHAR(60) ,in pUrl VARCHAR(50), in pIco VARCHAR(45), in pDescripcion MEDIUMTEXT, in pEstado VARCHAR(45), in moId INT)
 begin
 update Permiso SET nombrePer=pNombre,urlPer=pUrl,icoPer=pIco,descripcionMod=pDescripcion,estadoPer=pDescripcion,IdMod=moId where idPer = pId ;
 end $$
@@ -199,7 +199,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.perEl (in pId INT)
+create procedure LotusQA.permisoEl (in pId INT)
 begin
 delete from Permiso where idPer = pId ;
 end $$
@@ -210,7 +210,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.perLi ()
+create procedure LotusQA.permisoLi ()
 begin
 select idPer,nombrePer,urlPer,icoPer,descripcionMod,estadoPer,IdMod from Permiso;
 end $$
@@ -221,7 +221,7 @@ delimiter
 -- ---------------------------------------------------------------------------------------------------------------
 
 delimiter $$
-create procedure LotusQA.perCo (in pId INT)
+create procedure LotusQA.permisoCo (in pId INT)
 begin
 select idPer,nombrePer,urlPer,icoPer,descripcionMod,estadoPer,IdMod from Permiso where idPer = pId;
 end $$

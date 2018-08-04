@@ -63,7 +63,7 @@ public class msj implements Serializable {
 
     @Override
     public String toString() {
-        return "Mensaje{" + "tipo=" + tipo + ", msj=" + msj + ", detalles=" + detalles + '}';
+        return "Tipo= " + tipo + "\n Msj= " + msj + "\n Detalles= " + detalles  + "\n";
     }
     
     
