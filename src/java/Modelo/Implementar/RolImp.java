@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +61,7 @@ public class RolImp extends Mensajero implements Rol {
         PreparedStatement stat = null;
         try {
             stat = con.prepareStatement(Update);
-            stat.setInt(1, r.getId());
+            stat.setLong(1, r.getId());
             stat.setString(2, r.getNombre());
             stat.setString(3, r.getDescripcion());
             stat.setBoolean(4, r.isStatus());
@@ -82,12 +81,35 @@ public class RolImp extends Mensajero implements Rol {
 
     @Override
     public msj Delete(Long Id) {
-    
+
+        RolTab r = one(Id);
+
+        if (r != null) {
+            PreparedStatement stat = null;
+            try {
+                stat = con.prepareCall(Delete);
+                stat.setLong(1, Id);
+                if (stat.executeUpdate() == 0) {
+
+                    m = DeleteError(r.getNombre());
+                } else {
+                    m = DeleteOk(r.getNombre());
+                }
+            } catch (SQLException ex) {
+                m = DeleteError(r.getNombre(), ex);
+            } finally {
+                m = statsClose(stat);
+            }
+
+        } else {
+            m = DeleteError();
+        }
+        return m;
     }
 
     @Override
     public RolTab gets(ResultSet rs) throws SQLException {
-        int Id = rs.getInt("idRol");
+        Long Id = rs.getLong("idRol");
         String Nombre = rs.getString("nombreRol");
         String Descripcion = rs.getString("descripcionRol");
         boolean Stat = rs.getBoolean("estadoRol");

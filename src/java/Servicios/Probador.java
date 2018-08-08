@@ -32,13 +32,11 @@ public class Probador extends Mensajero {
     public void test() {
         try {
             Admin asql = new Admin();
-
             Long Id = Long.valueOf(7);
             List<RolTab> r = asql.getRol().all();
             for (RolTab fr : r) {
                 System.out.println(fr.toString());
             }
-
             /*
             // TODO code application logic here
             // Permiso Modificar
@@ -61,7 +59,7 @@ public class Probador extends Mensajero {
 
             ModuloTab r = new ModuloTab(Id, Nombre, Descripcion, Stat);
             m = asql.getModulo().Update(r);
-            // Rol Modificar
+            // Usuario Modificar
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
             String Nombre = "Diana Patricia";

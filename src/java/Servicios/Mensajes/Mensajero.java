@@ -47,6 +47,20 @@ public abstract class Mensajero {
         return m;
     }
 
+    public msj InserDuplo(String Id, String Nombre) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error! ");
+        m.setDetalles(Nombre + ", no pudo se púdo registrar. \n El ID: " + Id + " Ya fue registrado.");
+        return m;
+    }
+
+    public msj InserDuplo(Long Id, String Nombre) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error! ");
+        m.setDetalles(Nombre + ", no pudo se púdo registrar. \n El ID: " + Id + " Ya fue registrado.");
+        return m;
+    }
+
     public msj InsertError(String Nombre) {
         m.setTipo("Error");
         m.setMsj("¡Hubo un error! ");
@@ -72,6 +86,34 @@ public abstract class Mensajero {
         m.setTipo("Error");
         m.setMsj("¡Hubo un error! ");
         m.setDetalles(Nombre + ", no pudo se púdo actualizar. \n Por favor verifica la informacion ingresada.");
+        return m;
+    }
+
+    public msj DeleteOk(String Nombre) {
+        m.setTipo("Ok");
+        m.setMsj("Actualización exitosa");
+        m.setDetalles(Nombre + " Se ha ingresado satisfactoriamente.");
+        return m;
+    }
+
+    public msj DeleteError() {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error! ");
+        m.setDetalles("El Identificador no existe. \n Por favor verifica la informacion ingresada.");
+        return m;
+    }
+
+    public msj DeleteError(String Nombre) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error! ");
+        m.setDetalles(Nombre + ", no pudo se púdo actualizar. \n Por favor verifica la informacion ingresada.");
+        return m;
+    }
+
+    public msj DeleteError(String Nombre, SQLException ex) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("Sql: " + Nombre + ", no pudo se púdo Eliminar. \n Por favor verifica la informacion ingresada. \n Error: " + ex.getMessage() + "\n " + ex);
         return m;
     }
 

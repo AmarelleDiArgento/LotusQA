@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class RolTab implements Serializable {
 
-    private int Id;
+    private Long Id;
     private String Nombre;
     private String Descripcion;
     private boolean Status;
@@ -27,7 +27,7 @@ public class RolTab implements Serializable {
         this.Status = Status;
     }
 
-    public RolTab(int Id, String Nombre, String Descripcion, boolean Status) {
+    public RolTab(Long Id, String Nombre, String Descripcion, boolean Status) {
         this.Id = Id;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
@@ -37,14 +37,14 @@ public class RolTab implements Serializable {
     /**
      * @return the Id
      */
-    public int getId() {
+    public Long getId() {
         return Id;
     }
 
     /**
      * @param Id the Id to set
      */
-    public void setId(int Id) {
+    public void setId(Long Id) {
         this.Id = Id;
     }
 
