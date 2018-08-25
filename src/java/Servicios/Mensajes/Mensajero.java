@@ -16,7 +16,7 @@ import java.text.ParseException;
  */
 public abstract class Mensajero {
 
-    protected msj m = new msj();
+    public msj m = new msj();
 
     public msj NotFound(ClassNotFoundException ex) {
         m.setTipo("Error");
@@ -149,6 +149,13 @@ public abstract class Mensajero {
         m.setTipo("Error");
         m.setMsj("¡Hubo un error!");
         m.setDetalles("No se pudo localizar el identificador " + Id + ". \n Por favor verifica la informacion ingresada. \n Error: " + ex.getMessage() + "\n " + ex);
+        return m;
+    }
+    
+       public msj AllError(SQLException ex) {
+        m.setTipo("Error");
+        m.setMsj("¡Hubo un error!");
+        m.setDetalles("No se pudo cargar esta lista. \n Error: " + ex.getMessage() + "\n " + ex);
         return m;
     }
 

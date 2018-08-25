@@ -11,14 +11,14 @@ import Modelo.Tablas.RolTab;
 import Servicios.Mensajes.msj;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -29,39 +29,48 @@ public class RolServ extends HttpServlet {
 
     @Resource(name = "Pool")
     private DataSource pool;
+    MsjServ msj = new MsjServ();
+    String Ruta;
+    RolTab r;
+    Long Id;
+    String Nombre;
+    String Detalles;
+    Boolean Status;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession Ss = request.getSession(true);
+//        if (Ss.getAttribute("Log") != null){
+
+        if (Ss.getAttribute("msj") != null) {
+            msj.m = (msj) Ss.getAttribute("msj");
+        }
+
+        if (Ss.getAttribute("jsp") != null) {
+            Ruta = (String) Ss.getAttribute("jsp");
+        } else {
+            Ruta = "rol.jsp";
+        }
+
+        String accion = request.getParameter("Accion");
+        if (accion == null) {
+            accion = "Listar";
+        }
+
         try {
             Admin Asql = new Admin(pool);
-            RolTab r;
-
-            String accion = request.getParameter("Accion");
-            Long Id;
-            String Nombre;
-            String Detalles;
-            Boolean Status;
-            msj m;
 
             switch (accion) {
                 case "Listar":
                     List<RolTab> RolList = Asql.getRol().all();
+                    Ss.setAttribute("lsRol", RolList);
                     break;
                 case "Registrar":
                     Nombre = request.getParameter("nombre");
                     Detalles = request.getParameter("detalles");
                     Status = request.getParameter("estado") != null;
                     r = new RolTab(Nombre, Detalles, Status);
-                    m = Asql.getRol().Insert(r);
+                    msj.m = Asql.getRol().Insert(r);
                     break;
                 case "Actualizar":
                     Id = Long.valueOf(request.getParameter("id"));
@@ -69,20 +78,29 @@ public class RolServ extends HttpServlet {
                     Detalles = request.getParameter("detalles");
                     Status = request.getParameter("estado") != null;
                     r = new RolTab(Id, Nombre, Detalles, Status);
-                    m = Asql.getRol().Update(r);
+                    msj.m = Asql.getRol().Update(r);
                     break;
                 case "Consultar":
                     Id = Long.valueOf(request.getParameter("id"));
-                    r  = Asql.getRol().one(Id);
+                    r = Asql.getRol().one(Id);
+                    Ss.setAttribute("rol", r);
                     break;
                 case "Eliminar":
                     Id = Long.valueOf(request.getParameter("id"));
-                    m = Asql.getRol().Delete(Id);
+                    msj.m = Asql.getRol().Delete(Id);
                     break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RolServ.class.getName()).log(Level.SEVERE, null, ex);
+            msj.m = msj.NotSql(ex);
         }
+
+//        }else{
+//            Ruta = "index.jsp";
+//        }
+        if (msj.m != null) {
+            Ss.setAttribute("msj", msj.m);
+        }
+        request.getRequestDispatcher(Ruta).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

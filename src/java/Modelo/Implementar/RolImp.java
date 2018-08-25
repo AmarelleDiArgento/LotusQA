@@ -153,6 +153,7 @@ public class RolImp extends Mensajero implements Rol {
                 r.add(gets(rs));
             }
         } catch (SQLException ex) {
+            m = AllError(ex);
         } finally {
             statsClose(stat, rs);
         }
